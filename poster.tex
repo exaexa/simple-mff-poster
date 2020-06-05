@@ -1,0 +1,212 @@
+
+% POSTER EXAMPLE
+%
+% This is an example of a relatively sane poster. The box structure (and the
+% narrative in general) is what I would expect, but it is completely
+% non-mandatory; you may include whatever you want. Preferably, erase the
+% existing box structure after you read it, and start from scratch.
+%
+% The main communication requirements for the poster that should be satisfied
+% are as such:
+%
+% - At the defense, it should help you talk for around 10 minutes about your
+%   thesis, and convince the committee that you did something interesting and
+%   sufficiently complicated. Prepare pictures that explain your main results.
+%
+% - It should quickly communicate the main idea of your thesis to a random
+%   educated by-walker. Ideally, a moderately-witted MFF graduate who has never
+%   heard about your thesis before should be able to get the main "rough idea"
+%   in less than 1 minute by just looking at the poster.
+
+% modify the fontscale parameter to make everything slighly bigger or smaller.
+\documentclass[portrait,a0paper,fontscale=0.25]{baposter}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% FONT CHOICES
+% Posters do not need to be PDF/A; you can choose any relatable font from the
+% TeX font catalogue without much risk. Sans-serif fonts are suggested for the
+% posters; see https://tug.org/FontCatalogue/sansseriffonts.html
+\usepackage[sfdefault]{Fira Sans}
+%\usepackage[default]{droidsans}
+%\usepackage[math]{iwona}
+%\usepackage[defaultfam]{montserrat}
+%\usepackage{cmbright}
+%\usepackage{yfonts}\renewcommand{\familydefault}{\frakdefault}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath}
+\usepackage[export]{adjustbox} %allows using valign with \includegraphics
+
+\renewcommand{\arraystretch}{1.5}
+
+\usetikzlibrary{positioning}
+
+% A WORD ABOUT COLORS
+%
+% This template is prepared with a relatively neutral gray background that
+% gives decent box borders (with white and darker gray), does not clash with
+% many colors (except for violet-brown and other mushroomish colors, perhaps)
+% and gives a lot of space for highlighting stuff.
+%
+% Generally, other color variations are good too; there are no strict rules on
+% the colors. Good choices include:
+%
+% - white backgrounds and differentiation of box headers by color (see
+%   headerFontColor)
+%
+% - various slightly tinted backgrounds (try red!10 instead of black!3)
+% 
+% - dark backgrounds
+%
+% Keep in mind:
+% - The normal "informative" text and figures should be DARK on LIGHT
+%   background, not the other way around.
+%
+% - If you want a dark background, soften (darken) the box backgrounds a bit so
+%   that they do not "shine" too much from the poster. Use \color{white} for
+%   the heading, and switch the UK/MFF logos to white (see contents of logos/).
+%
+% - Do not mix too many color hues together. Most hues have their widely
+%   accepted meaning (green: good result, red: problem, blue: information,
+%   yellow: highlighter, brown: serious problem, violet: something really
+%   weird/interesting/magic, depending on the shade).
+
+\begin{document}
+
+\color{black!80} % default font color
+\begin{poster}{grid=false,
+	eyecatcher=true,
+	background=plain,
+	bgColorOne=black!3, % background color
+	columns=2,
+	headerborder=none,
+	textborder=none,
+	headershape=rectangle,
+	headershade=plain,
+	boxshade=plain,
+	boxColorOne=white,
+	headershade=plain,
+	headerColorOne=black!15, % box header background color
+	headerFontColor=black,
+	}%
+	{\includegraphics[height=7em]{logos/mff-black.pdf}}
+	{Thesis name goes here}
+	{\vspace{1ex} Yourname Goeshere}
+	{\includegraphics[height=7em]{logos/uk-red.pdf}}
+
+
+%
+% LEFT COLUMN
+%
+
+\begin{posterbox}[column=0,name=background]{Background}
+Describe what is the problem that your thesis addresses.
+
+Include a picture of the problem. Name the problem.
+
+\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
+\node[rectangle, rounded corners=1ex, draw=red!80!black, color=red!80!black, font=\huge\bfseries, rotate=21] {Problem!};
+\end{tikzpicture}\end{center}
+\end{posterbox}
+
+\begin{posterbox}[column=0, name=goals, below=background, headerColorOne=cyan!60, boxColorOne=cyan!20]{Thesis goals}
+\begin{itemize}
+\item How do you approach and address the problem?
+\item What tools do you use to address it?
+\item \dots
+\end{itemize}
+
+Highlighting important boxes helps a lot, but do not overdo the highlighting --- if all boxes are highlighted, not a single one will actually stand out.
+\end{posterbox}
+
+\begin{posterbox}[column=0, name=something1, below=goals]{Some extra boxes}
+This box may contain an overview of the used methods, mathematics, program structure, etc.
+
+Include a picture, because pictures are better. Thesis defense takes less than 10 minutes, no one can read a wall of text in that short time. (For comparison, the usual realistic poster visit on a conference takes 15 seconds, unless the poster manages to catch the attention in that short time.)
+
+\tikzstyle{rec}=[rectangle, draw, rounded corners=1ex, font=\huge\bfseries]
+\begin{center}\begin{tikzpicture}[ultra thick, inner sep=1ex]
+\node[rec] (a) {Keep};
+\node[rec, circle, right=of a] (b) {it};
+\node[rec, right=of b] (c) {simple};
+\node[rec, densely dotted, below=6cm of c, font=\small] (notice) {\dots{}but precise!};
+\draw[->] (a) to (b);
+\draw[->] (b) to (c);
+\draw[dotted] (notice) to (c);
+\end{tikzpicture}\end{center}
+
+\end{posterbox}
+
+\begin{posterbox}[column=0, name=something2, below=something1, headerColorOne=yellow!80!orange!95!black, boxColorOne=yellow!33]{Golden rule of posters}
+For each $p \in P$ where $P$ is a set of posters:
+$$ \textsc{Success}(p) = \frac{\textsc{Clarity}(p)}{\textsc{TimeToViewerAttention}(p)} $$
+\end{posterbox}
+
+%
+% FOOTER
+%
+
+\begin{posterbox}[column=0, span=2, name=footer, below=something2,
+	textborder=none, headerborder=none, boxheaderheight=0pt,
+	boxColorOne=black!3]{}
+If some institute/grant/department sponsored the work, put an acknowledgement here.
+\end{posterbox}
+
+%
+% RIGHT COLUMN
+%
+% It is usually best to fill most of the poster with your results and
+% conclusions. Again, use simple annotated pictures wherever possible. Plots
+% with measurements are perfect, tables are also good.
+%
+
+\begin{posterbox}[column=1, name=result1]{Result: SomePlots are Good}
+\begin{center}
+\includegraphics[width=0.7\linewidth]{img/ukazka-obr02.pdf}
+\end{center}
+
+You may want to choose a single picture and make it stand out of the poster, so that it communicates the main result of your thesis as clearly as possible.
+\end{posterbox}
+
+\begin{posterbox}[column=1, name=result2, below=result1]{Result: TableData are OK too}
+\begin{center}
+\begin{tabular}{lrr}
+ & \textbf{SomeProgram} & \textbf{ThisThesis} \\
+\hline
+Process A & 50\% & 58\% \\
+Time for A & 35 days & \textcolor{green!80!black}{35 seconds} \\
+Process B & \textcolor{red}{15\%} & 55\% \\
+Time for B & 1 day & 8 hours \\
+Price & 66.6 EUR & free
+\end{tabular}
+\end{center}
+\end{posterbox}
+
+\begin{posterbox}[column=1, name=result3, below=result2, headerColorOne=green!50!yellow, boxColorOne=green!10]{Main result}
+\large\bfseries
+\vspace{1ex}
+\begin{center}
+Program ThesisProgram solves the problem better than OtherProgram if X, and faster if Y.
+\end{center}
+\vspace{.5ex}
+\end{posterbox}
+
+\begin{posterbox}[column=1, name=conclusion, below=result3, bottomaligned=something2]{Conclusions}
+\begin{itemize}
+\item explain the value of your result to others
+\item point out any applications
+\item if the program is online/opensource/on github, you may highlight it here
+\end{itemize}
+Possible future work:
+\begin{itemize}
+\item say what could be improved
+\item point out any interesting new opened problems that would be worth investigating
+\item include long-term goals
+\end{itemize}
+\end{posterbox}
+
+\end{poster}
+\end{document}
